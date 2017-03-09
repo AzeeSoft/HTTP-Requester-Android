@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AZHTTPTextField" parent="Material.Widget.EditText.Light">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:inputType">textPersonName</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:hint">Hint</item>
+        <item name="et_dividerColor">@color/az_GreyText</item>
+        <item name="et_labelTextSize">20sp</item>
+        <item name="et_labelTextColor">@color/az_GreyText</item>
+        <item name="et_labelPadding">5dp</item>
+        <item name="et_labelEnable">true</item>
+        <item name="et_dividerHeight">1dp</item>
+        <item name="et_dividerPadding">3dp</item>
+        <item name="android:contentDescription">conDes</item>
+        <item name="android:visibility">visible</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:layout_marginTop">10dp</item>
+    </style>
+
+    <style name="AZHTTPLabel">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:text">Text</item>
+        <item name="android:textColor">#ff575757</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:contentDescription">conDes</item>
+        <item name="android:clickable">true</item>
+        <item name="android:layout_marginLeft">0dp</item>
+        <item name="android:layout_marginTop">0dp</item>
+    </style>
+
+    <style name="AZHTTPHeading">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:text">Text</item>
+        <item name="android:textColor">#ffacacac</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceLarge</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:contentDescription">conDes</item>
+        <item name="android:clickable">true</item>
+        <item name="android:layout_marginLeft">0dp</item>
+        <item name="android:layout_marginTop">0dp</item>
+    </style>
+
+    <style name="AZHTTPSpinner" parent="Material.Widget.Spinner">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:dropDownWidth">wrap_content</item>
+        <item name="android:textColor">@color/az_GreyText</item>
+        <item name="spn_labelEnable">true</item>
+        <item name="spn_labelPadding">15dp</item>
+        <item name="spn_labelTextSize">17sp</item>
+        <item name="spn_labelTextColor">@color/az_DarkGreyText</item>
+        <item name="spn_arrowColor">@color/az_accent_color</item>
+        <item name="spn_dividerColor">@color/az_GreyText</item>
+        <item name="spn_arrowSwitchMode">true</item>
+        <item name="spn_arrowAnimClockwise">true</item>
+        <item name="spn_arrowAnimDuration">500</item>
+        <item name="android:layout_marginLeft">40dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+    </style>
+
+    <style name="AZHTTPLinearProgress">
+        <item name="lpd_strokeSize">10dp</item>
+        <item name="lpd_strokeColors">@array/az_progress_colors</item>
+        <item name="lpd_strokeSecondaryColor">@android:color/transparent</item>
+        <item name="lpd_reverse">false</item>
+        <item name="lpd_transformDuration">600</item>
+        <item name="lpd_keepDuration">200</item>
+        <item name="lpd_transformInterpolator">@android:anim/decelerate_interpolator</item>
+        <item name="pv_progressMode">indeterminate</item>
+        <item name="lpd_inAnimDuration">0</item>
+        <item name="lpd_outAnimDuration">@android:integer/config_mediumAnimTime</item>
+    </style>
+
+    <style name="AZHTTPProgress" parent="Material.Drawable.CircularProgress">
+        <item name="cpd_padding">0dp</item>
+        <item name="cpd_initialAngle">0</item>
+        <item name="cpd_maxSweepAngle">270</item>
+        <item name="cpd_minSweepAngle">1</item>
+        <item name="cpd_strokeSize">4dp</item>
+        <item name="cpd_strokeColors">@array/az_progress_colors</item>
+        <item name="cpd_inStepColors">@array/az_progress_step_in</item>
+        <item name="cpd_strokeSecondaryColor">@android:color/transparent</item>
+        <item name="cpd_reverse">false</item>
+        <item name="cpd_rotateDuration">1000</item>
+        <item name="cpd_transformDuration">600</item>
+        <item name="cpd_keepDuration">200</item>
+        <item name="cpd_transformInterpolator">@android:anim/decelerate_interpolator</item>
+        <item name="pv_progressMode">indeterminate</item>
+        <item name="cpd_inAnimDuration">@android:integer/config_mediumAnimTime</item>
+        <item name="cpd_outAnimDuration">@android:integer/config_mediumAnimTime</item>
+    </style>
+
+    <style name="AZHTTPButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">0dp</item>
+        <item name="android:layout_marginLeft">20dp</item>
+    </style>
+
+    <style name="AZHTTPFButton" parent="Material.Widget.FloatingActionButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:text">Text</item>
+    </style>
+
+    <style name="AZHTTPRadioButton" parent="Material.Drawable.RadioButton">
+        <item name="rbd_strokeColor">@color/az_colorPrimaryDark</item>
+    </style>
+
+    <style name="AZHTTPRedDialog" parent="Material.App.Dialog">
+        <item name="di_backgroundColor">@color/az_card_bg</item>
+        <item name="di_titleTextColor">@color/az_DarkGreyText</item>
+        <item name="di_actionTextColor">@color/az_GreyText</item>
+    </style>
+
+    <style name="AZHTTPDarkDialog" parent="Material.App.Dialog">
+        <item name="di_backgroundColor">@color/az_BlackBG</item>
+        <item name="di_titleTextColor">@color/az_White</item>
+        <item name="di_actionTextColor">@color/az_White</item>
+    </style>
+
+</resources>

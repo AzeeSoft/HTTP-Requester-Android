@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="az_progress_colors">
+        <item>#2196F3</item>
+        <item>#F44336</item>
+        <item>#8BC34A</item>
+        <item>#00BCD4</item>
+    </array>
+
+    <array name="az_progress_step_in">
+        <item>@color/az_colorPrimaryDark</item>
+        <item>#F44336</item>
+        <item>#8BC34A</item>
+        <item>#00BCD4</item>
+    </array>
+
+</resources>

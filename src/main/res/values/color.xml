@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="az_font_color">#FAFAFA</color>
+    <color name="az_banner_color">#492B7B</color>
+    <color name="az_colorPrimary">#2e8187</color>
+    <color name="az_colorPrimaryDark">#325a87</color>
+    <color name="az_colorAccent">#293c51</color>
+
+    <color name="az_black_overlay">#66000000</color>
+
+
+
+    <color name="az_accent_color">@color/az_colorAccent</color>
+    <color name="az_White">#ffffff</color>
+    <color name="az_AlphaWhite">#AAffffff</color>
+    <color name="az_GreyText">#6c6c6c</color>
+    <color name="az_DarkGreyText">#292929</color>
+    <color name="az_transparent">#0000</color>
+
+    <color name="az_LockPinCircle">#534255</color>
+    <color name="az_BlackBG">#ff282828</color>
+    <color name="az_SubOpts">#11BBBB</color>
+    <color name="az_SubOptsFocused">#117777</color>
+    <color name="az_Fav">#BB4444</color>
+    <color name="az_FavFocused">#4444AA</color>
+    <color name="az_LockGrad">#000</color>
+    <color name="az_card_bg">#ddd</color>
+    <color name="az_light_bg">#c0c0c0</color>
+</resources>
