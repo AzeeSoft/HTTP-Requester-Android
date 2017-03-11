@@ -14,7 +14,9 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -39,6 +41,10 @@ public abstract class AZHTTPRequester {
     private String progressText = "Connecting.. Please Wait..";
     private String requestString = "";
     private String url;
+
+    private List<OnPrepareListener> onPrepareListenerList = new ArrayList<>();
+    private List<OnResultListener> onResultListenerList = new ArrayList<>();
+    private List<OnErrorListener> onErrorListenerList = new ArrayList<>();
 
     public AZHTTPRequester(Context context, String url) {
         initRequester(context, url, "POST");
@@ -111,6 +117,18 @@ public abstract class AZHTTPRequester {
         }
     }
 
+    public void addOnResultListener(OnResultListener orl) {
+        onResultListenerList.add(orl);
+    }
+
+    public void addOnRequestInitListener(OnPrepareListener oril) {
+        onPrepareListenerList.add(oril);
+    }
+
+    public void addOnErrorListener(OnErrorListener oel) {
+        onErrorListenerList.add(oel);
+    }
+
     public void sendRequest() {
         String s = "";
 
@@ -134,6 +152,29 @@ public abstract class AZHTTPRequester {
         this.cancelable = cancelable;
     }
 
+    private boolean execPrepares() {
+        boolean canContinue = onPrepare();
+        for (OnPrepareListener onPrepareListener : onPrepareListenerList) {
+            if(!onPrepareListener.onPrepare(this)){
+                canContinue=false;
+            }
+        }
+
+        return canContinue;
+    }
+
+    private void execResults(JSONObject jsonObject) {
+        onResult(jsonObject);
+        for (OnResultListener onResultListener : onResultListenerList)
+            onResultListener.onResult(jsonObject);
+    }
+
+    private void execErrors(AZHTTPResult errCode, String msg) {
+        onError(errCode, msg);
+        for (OnErrorListener onErrorListener : onErrorListenerList)
+            onErrorListener.onError(errCode, msg);
+    }
+
     private boolean onPreExecute() {
         if (showDialog) {
             pd = new CustomProgressDialog(context);
@@ -143,7 +184,7 @@ public abstract class AZHTTPRequester {
             QT.log("Showing PD...");
         }
 
-        return onPrepare();
+        return execPrepares();
     }
 
     private AZHTTPResult doInBackground(String... s) {
@@ -175,7 +216,11 @@ public abstract class AZHTTPRequester {
             QT.log("Dismissing PD...");
         }
 
-        onResult(code, jobj);
+        if(code==AZHTTPResult.OK){
+            execResults(jobj);
+        }else{
+            execErrors(code,code.toString());
+        }
     }
 
     public Context getContext() {
@@ -190,15 +235,9 @@ public abstract class AZHTTPRequester {
         return url;
     }
 
-    abstract public boolean onPrepare();
-
-    abstract public void onResult(AZHTTPResult resultCode, JSONObject jsonObject);
-
-
     private class JSONParser extends StringRequest {
 
         Map<String, String> params;
-
 
         public JSONParser(int m, String u, Response.Listener<String> listener, Response.ErrorListener errorListener) {
             super(m, u, listener, errorListener);
@@ -234,5 +273,24 @@ public abstract class AZHTTPRequester {
 
             return params;
         }
+    }
+
+
+    abstract public boolean onPrepare();
+
+    abstract public void onResult(JSONObject jsonObject);
+
+    abstract public void onError(AZHTTPResult errCode, String errMsg);
+
+    public interface OnResultListener {
+        void onResult(JSONObject jobj);
+    }
+
+    public interface OnPrepareListener {
+        boolean onPrepare(AZHTTPRequester httpRequester);
+    }
+
+    public interface OnErrorListener {
+        void onError(AZHTTPResult errCode, String errMsg);
     }
 }
