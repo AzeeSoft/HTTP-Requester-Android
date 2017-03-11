@@ -28,6 +28,7 @@ public abstract class AZHTTPRequester {
         OK,
         NETWORK_ERROR,
         JSON_ERROR,
+        CANCELLED,
         NULL
     }
 
@@ -121,7 +122,7 @@ public abstract class AZHTTPRequester {
         onResultListenerList.add(orl);
     }
 
-    public void addOnRequestInitListener(OnPrepareListener oril) {
+    public void addOnPrepareListener(OnPrepareListener oril) {
         onPrepareListenerList.add(oril);
     }
 
@@ -135,7 +136,7 @@ public abstract class AZHTTPRequester {
 
         RequestQueue queue = Volley.newRequestQueue(context);
         requestString = s;
-        if (onPreExecute())
+        if (!onPreExecute())
             queue.add(jparser);
         //executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, s);
     }
@@ -153,14 +154,14 @@ public abstract class AZHTTPRequester {
     }
 
     private boolean execPrepares() {
-        boolean canContinue = onPrepare();
+        boolean cancel = onPrepare();
         for (OnPrepareListener onPrepareListener : onPrepareListenerList) {
-            if(!onPrepareListener.onPrepare(this)){
-                canContinue=false;
+            if(onPrepareListener.onPrepare(this)){
+                cancel=true;
             }
         }
 
-        return canContinue;
+        return cancel;
     }
 
     private void execResults(JSONObject jsonObject) {
@@ -176,7 +177,9 @@ public abstract class AZHTTPRequester {
     }
 
     private boolean onPreExecute() {
-        if (showDialog) {
+        boolean cancel=execPrepares();
+
+        if (!cancel && showDialog) {
             pd = new CustomProgressDialog(context);
             pd.setMessage(progressText);
             pd.setCancelable(cancelable);
@@ -184,7 +187,11 @@ public abstract class AZHTTPRequester {
             QT.log("Showing PD...");
         }
 
-        return execPrepares();
+        if(cancel){
+            execErrors(AZHTTPResult.CANCELLED,AZHTTPResult.CANCELLED.toString());
+        }
+
+        return cancel;
     }
 
     private AZHTTPResult doInBackground(String... s) {
